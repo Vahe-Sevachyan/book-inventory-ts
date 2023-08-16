@@ -1,3 +1,9 @@
+body {
+  background-color: #5a5f68;
+}
+.page-header {
+  color: white;
+}
 /* Modal Styles */
 .modal {
   display: none;
@@ -35,14 +41,17 @@ input[type="text"] {
   padding: 5px;
 }
 
-.create-book {
+.create-book-btn,
+.save-btn,
+.close-btn {
   padding: 10px 15px;
-  background-color: #4caf50;
+  background-color: #149eca;
   color: white;
   border: none;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #2089ac;
 }
