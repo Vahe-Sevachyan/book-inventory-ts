@@ -1,23 +1,34 @@
 const modal = document.querySelector(".modal") as HTMLElement;
 const createBookBtn = document.querySelector(".create-book-btn") as HTMLElement;
-const closeModal = document.querySelector(".close-btn") as HTMLElement;
+const closeBtn = document.querySelector(".close-btn") as HTMLElement;
 const saveBtn = document.querySelector(".save-btn") as HTMLElement;
-const bookInventory = [];
-if (modal) {
+const bookInventory: Book[] = [];
+
+if (closeBtn) {
+  closeBtn.onclick = () => {
+    closeModal();
+  };
+}
+if (createBookBtn) {
   createBookBtn.onclick = () => {
-    modal.style.display = "block";
+    openModal();
   };
 }
-
-if (closeModal) {
-  closeModal.onclick = () => {
-    modal.style.display = "none";
-  };
-}
-
 if (saveBtn) {
+  saveBtn.onclick = () => {
+    saveBook();
+  };
 }
-
+function closeModal() {
+  if (modal) {
+    modal.style.display = "none";
+  }
+}
+function openModal() {
+  if (modal) {
+    modal.style.display = "block";
+  }
+}
 class Book {
   title: string;
   author: string;
@@ -51,11 +62,26 @@ class Book {
   }
 }
 
-saveBook(){
-  const titleInput = document.getElementById('title')as HTMLInputElement;
-  const author = document.getElementById('author')as HTMLInputElement
-  const publicationYear = document.getElementById('publicationYear')as HTMLInputElement;
-  const genre = document.getElementById('genre')as HTMLInputElement;
+function saveBook() {
+  const titleInput = document.getElementById("title") as HTMLInputElement;
+  const authorInput = document.getElementById("author") as HTMLInputElement;
+  const publicationYearInput = document.getElementById(
+    "publicationYear"
+  ) as HTMLInputElement;
+  const genreInput = document.getElementById("genre") as HTMLInputElement;
 
-  const title = titleInput.value
+  const title = titleInput.value;
+  const author = authorInput.value;
+  const publicationYear = parseInt(publicationYearInput.value);
+  const genre = genreInput.value;
+  const book = new Book(title, author, publicationYear, genre);
+  bookInventory.push(book);
+  console.log(bookInventory);
+  closeModal();
+}
+
+if (saveBtn) {
+  saveBtn.onclick = () => {
+    saveBook();
+  };
 }
